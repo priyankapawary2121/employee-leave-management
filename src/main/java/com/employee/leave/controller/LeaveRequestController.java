@@ -1,7 +1,9 @@
 package com.employee.leave.controller;
 
+import com.employee.leave.dto.LeaveRequestDto;
 import com.employee.leave.model.LeaveRequest;
 import com.employee.leave.service.LeaveRequestService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,8 +18,13 @@ public class LeaveRequestController {
     LeaveRequestService leaveRequestService;
 
     @PostMapping("/{employeeId}")
-    public ResponseEntity<LeaveRequest> apply(@PathVariable String employeeId, @RequestBody LeaveRequest request)
+    public ResponseEntity<LeaveRequest> apply(@PathVariable String employeeId, @Valid @RequestBody LeaveRequestDto dto)
     {
+        LeaveRequest request = new LeaveRequest();
+        request.setEmployeeId(employeeId);
+        request.setStartDate(dto.getStartDate());
+        request.setEndDate(dto.getEndDate());
+        request.setReason(dto.getReason());
         return ResponseEntity.ok(leaveRequestService.apply(employeeId,request));
     }
 
