@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface LeaveRequestService {
 
-    LeaveRequest apply(String employeeId,LeaveRequest request);
+    LeaveRequest apply(String employeeId,LeaveRequest request) throws IllegalAccessException;
     List<LeaveRequest> listOfEmployee(String employeeId);
-    LeaveRequest approveOrReject(String requestId,String MangerId,boolean approve, String comments);
+    LeaveRequest approveOrReject(String requestId,String mangerId,boolean approve, String comments);
 }

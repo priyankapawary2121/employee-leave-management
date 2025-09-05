@@ -18,8 +18,7 @@ public class LeaveRequestController {
     LeaveRequestService leaveRequestService;
 
     @PostMapping("/{employeeId}")
-    public ResponseEntity<LeaveRequest> apply(@PathVariable String employeeId, @Valid @RequestBody LeaveRequestDto dto)
-    {
+    public ResponseEntity<LeaveRequest> apply(@PathVariable String employeeId, @Valid @RequestBody LeaveRequestDto dto) throws IllegalAccessException {
         LeaveRequest request = new LeaveRequest();
         request.setEmployeeId(employeeId);
         request.setStartDate(dto.getStartDate());
