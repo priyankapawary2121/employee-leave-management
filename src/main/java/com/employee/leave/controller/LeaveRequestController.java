@@ -34,4 +34,24 @@ public class LeaveRequestController {
         List<LeaveRequest> list = leaveRequestService.listOfEmployee(employeeId);
         return list.isEmpty() ? ResponseEntity.notFound().build() : ResponseEntity.ok(list);
     }
+
+    @PutMapping("/{requestId}/decision")
+    public ResponseEntity<LeaveRequest> approveOrReject(@PathVariable String requestId,
+                                                        @RequestParam String managerId,
+                                                        @RequestParam boolean approve,
+                                                        @RequestParam(required=false) String comments){
+
+        return ResponseEntity.ok(leaveRequestService.approveOrReject(requestId,managerId,approve,comments));
+
+
+
+
+
+
+
+
+
+
+
+    }
 }

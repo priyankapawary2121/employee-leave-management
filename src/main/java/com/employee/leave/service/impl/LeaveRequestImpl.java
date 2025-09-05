@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class LeaveRequestImpl implements LeaveRequestService {
@@ -25,5 +26,16 @@ public class LeaveRequestImpl implements LeaveRequestService {
     @Override
     public List<LeaveRequest> listOfEmployee(String employeeId) {
         return leaveRequestRepo.findByEmployeeId(employeeId);
+    }
+
+    @Override
+    public LeaveRequest approveOrReject(String requestId, String mangerId, boolean approve, String comments) {
+        LeaveRequest request = leaveRequestRepo.findById(requestId).orElseThrow(() -> new RuntimeException("Leave request not found: " + requestId));;
+
+        request.setStatus(approve?"Approved":"Pending");
+        request.setManagerComments(mangerId);
+        request.setApprovedBy(comments);
+
+        return leaveRequestRepo.save(request);
     }
 }

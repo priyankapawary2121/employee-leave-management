@@ -33,6 +33,12 @@ public class LeaveRequest {
     @JsonProperty("status")
      String status;
 
+    @JsonProperty("managerComments")
+    String managerComments;
+
+    @JsonProperty("approvedBy")
+    String approvedBy;
+
     public String getId() {
         return id;
     }
@@ -57,6 +63,14 @@ public class LeaveRequest {
         return status;
     }
 
+    public String getManagerComments() {
+        return managerComments;
+    }
+
+    public String getApprovedBy() {
+        return approvedBy;
+    }
+
     public void setId(String id) {
         this.id = id;
     }
@@ -79,5 +93,13 @@ public class LeaveRequest {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public void setManagerComments(String managerComments) {
+        this.managerComments = managerComments;
+    }
+
+    public void setApprovedBy(String approvedBy) {
+        this.approvedBy = approvedBy;
     }
 }
