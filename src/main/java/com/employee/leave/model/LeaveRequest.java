@@ -31,7 +31,7 @@ public class LeaveRequest {
     String reason;
 
     @JsonProperty("status")
-     String status;
+    String  status;
 
     @JsonProperty("managerComments")
     String managerComments;

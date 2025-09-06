@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
-import java.util.Optional;
+
 
 @Service
 public class LeaveRequestImpl implements LeaveRequestService {
@@ -40,8 +40,9 @@ public class LeaveRequestImpl implements LeaveRequestService {
         for(LeaveRequest lr : existing){
             if(lr.getStatus()==null)
                 continue;
-            String st=lr.getStatus().toUpperCase();
-            if(!st.equals("REJECTED") && !st.equals("CANCELED")) {
+
+            String str = lr.getStatus().toUpperCase();
+            if(!str.equals("REJECTED") && !str.equals("CANCELLED")) {
                 if (datesOverlap(start, end, lr.getStartDate(), lr.getEndDate())) {
                     throw new IllegalStateException("Overlapping leave exists with requestId: " + lr.getId());
                 }
