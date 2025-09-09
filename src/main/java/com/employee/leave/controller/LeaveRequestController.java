@@ -34,23 +34,13 @@ public class LeaveRequestController {
         return list.isEmpty() ? ResponseEntity.notFound().build() : ResponseEntity.ok(list);
     }
 
-    @PutMapping("/{requestId}/decision")
+   @PutMapping("/{requestId}/decision")
     public ResponseEntity<LeaveRequest> approveOrReject(@PathVariable String requestId,
                                                         @RequestParam String managerId,
                                                         @RequestParam boolean approve,
                                                         @RequestParam(required=false) String comments){
 
         return ResponseEntity.ok(leaveRequestService.approveOrReject(requestId,managerId,approve,comments));
-
-
-
-
-
-
-
-
-
-
 
     }
 }
